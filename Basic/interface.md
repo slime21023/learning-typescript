@@ -7,7 +7,6 @@ order: 4
 
 ## Interfaces（介面）
 
-### **最佳實踐**
 1. **使用介面描述物件的結構**：
    - 使用介面來定義物件的形狀（結構），提供型別安全，讓程式碼更具可讀性與可維護性。
    - 適合用於函式參數、返回值或物件屬性的型別定義。
@@ -21,9 +20,6 @@ order: 4
 4. **使用索引簽名（Index Signatures）**：
    - 當物件的屬性名稱未知但結構一致時，可以使用索引簽名。
 
-### **範例**
-
-#### **定義物件結構**
 ```typescript
 interface User {
   id: number;
@@ -38,7 +34,7 @@ const user: User = {
 };
 ```
 
-#### **函式參數與返回值**
+**函式參數與返回值**
 ```typescript
 interface Product {
   id: number;
@@ -54,7 +50,7 @@ const product: Product = { id: 101, name: "Laptop", price: 1500 };
 console.log(getProductInfo(product)); // Product: Laptop, Price: 1500
 ```
 
-#### **索引簽名**
+**索引簽名**
 ```typescript
 interface StringDictionary {
   [key: string]: string; // 索引簽名：所有屬性名稱都是字串，值也是字串
@@ -67,11 +63,8 @@ const dictionary: StringDictionary = {
 console.log(dictionary["hello"]); // world
 ```
 
----
-
 ## Extending Interfaces（擴展介面）
 
-### **最佳實踐**
 1. **使用繼承來擴展介面**：
    - 當一個介面需要基於另一個介面進行擴展時，使用 `extends` 關鍵字。
    - 繼承可以讓介面更具彈性，減少重複定義。
@@ -82,9 +75,8 @@ console.log(dictionary["hello"]); // world
 3. **避免過度深層的繼承**：
    - 過多層次的繼承會增加複雜性，應保持繼承結構簡單清晰。
 
-### 範例
 
-#### **單一擴展**
+**單一擴展**
 ```typescript
 interface Animal {
   name: string;
@@ -103,7 +95,7 @@ const myDog: Dog = {
 console.log(myDog); // { name: 'Buddy', age: 3, breed: 'Golden Retriever' }
 ```
 
-#### **多重擴展**
+**多重擴展**
 ```typescript
 interface Engine {
   horsepower: number;
@@ -125,7 +117,7 @@ const myCar: Car = {
 console.log(myCar); // { horsepower: 300, wheelCount: 4, brand: 'Tesla' }
 ```
 
-#### **擴展與可選屬性結合**
+**擴展與可選屬性結合**
 ```typescript
 interface BaseUser {
   id: number;
@@ -145,13 +137,11 @@ const admin: AdminUser = {
 console.log(admin); // { id: 1, name: 'Admin', permissions: [ 'read', 'write', 'delete' ] }
 ```
 
----
 
 ## 使用介面與類別結合
 
 介面可以用來描述類別的結構，實現更靈活的型別檢查。
 
-### **範例**
 ```typescript
 interface Shape {
   calculateArea(): number;
@@ -169,7 +159,6 @@ const rectangle = new Rectangle(5, 10);
 console.log(rectangle.calculateArea()); // 50
 ```
 
----
 
 ## 差異與補充：介面 vs 型別別名
 
@@ -179,7 +168,6 @@ console.log(rectangle.calculateArea()); // 50
 | 用途   | 主要用於描述物件結構       | 可用於物件結構、聯合型別、函式型別等 |
 | 靈活性 | 更適合描述物件和類別的結構 | 更靈活，但不適合過於複雜的結構       |
 
-### **範例：型別別名的交集**
 ```typescript
 type Animal = {
   name: string;
@@ -195,9 +183,8 @@ const myDog: Dog = {
 };
 ```
 
----
+## 總結
 
-## **總結**
 - **Interfaces** 是 TypeScript 中描述物件結構的核心工具，應用於函式參數、返回值及物件屬性。
 - **Extending Interfaces** 提供了介面的重用性與靈活性，適合用於描述多層結構或組合型別。
 - 使用介面時，應遵循簡單、清晰的原則，避免過度複雜的繼承結構。

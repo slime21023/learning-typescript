@@ -7,7 +7,6 @@ order: 5
 
 ## Intersection Types（交集型別）
 
-### **最佳實踐**
 1. **用於結合多個型別**：
    - 使用交集型別（`&`）將多個型別結合成一個新型別。
    - 適合用於需要同時滿足多個型別的情況，尤其是在物件合併或多重屬性需求時。
@@ -18,9 +17,7 @@ order: 5
 3. **搭配介面或類別使用**：
    - 可以將介面或類別與交集型別結合，實現更靈活的型別設計。
 
-### **範例**
-
-#### **基本範例：合併型別**
+**基本範例：合併型別**
 ```typescript
 interface Person {
   name: string;
@@ -43,7 +40,7 @@ const staff: Staff = {
 console.log(staff);
 ```
 
-#### **動態型別合併**
+**動態型別合併**
 ```typescript
 type A = { a: string };
 type B = { b: number };
@@ -57,11 +54,9 @@ const obj: Combined = {
 console.log(obj); // { a: 'Hello', b: 42 }
 ```
 
----
 
 ## Type Guards（型別守衛）
 
-### **最佳實踐**
 1. **使用型別守衛進行型別縮小**：
    - 型別守衛用於在執行期間檢查型別，並根據檢查結果縮小型別範圍。
    - 常用於處理聯合型別（`|`）的情況。
@@ -75,9 +70,8 @@ console.log(obj); // { a: 'Hello', b: 42 }
 4. **避免過多的型別守衛邏輯**：
    - 如果型別檢查邏輯過於複雜，應考慮重構程式碼或使用類別與多型解決問題。
 
-### **範例**
 
-#### **使用 `typeof`**
+**使用 `typeof`**
 ```typescript
 function printValue(value: string | number): void {
   if (typeof value === "string") {
@@ -91,7 +85,7 @@ printValue("hello"); // String value: HELLO
 printValue(42);      // Number value: 42.00
 ```
 
-#### **使用 `instanceof`**
+**使用 `instanceof`**
 ```typescript
 class Dog {
   bark() {
@@ -119,7 +113,7 @@ makeSound(dog); // Woof!
 makeSound(cat); // Meow!
 ```
 
-#### **使用 `in`**
+**使用 `in`**
 ```typescript
 interface Car {
   drive: () => void;
@@ -143,7 +137,7 @@ operateVehicle(car);  // Driving...
 operateVehicle(boat); // Sailing...
 ```
 
-#### **自定義型別守衛**
+**自定義型別守衛**
 ```typescript
 interface Bird {
   fly: () => void;
@@ -171,11 +165,10 @@ move(bird); // Flying...
 move(fish); // Swimming...
 ```
 
----
 
 ## Type Assertions（型別斷言）
 
-### **最佳實踐**
+**最佳實踐**
 1. **僅在必要時使用型別斷言**：
    - 型別斷言用於告訴編譯器某個值的型別，但應謹慎使用，避免破壞型別安全。
    - 適用於確定值的型別比編譯器推斷的型別更具體的情況。
@@ -189,9 +182,8 @@ move(fish); // Swimming...
 4. **使用非空斷言（`!`）謹慎處理空值**：
    - 當確定值不為 `null` 或 `undefined` 時，可以使用非空斷言，但應避免濫用。
 
-### **範例**
 
-#### **基本型別斷言**
+**基本型別斷言**
 ```typescript
 let value: unknown = "Hello, TypeScript!";
 
@@ -200,7 +192,7 @@ let strLength: number = (value as string).length;
 console.log(strLength); // 18
 ```
 
-#### **非空斷言**
+**非空斷言**
 ```typescript
 function printName(name?: string): void {
   // 確定 name 不為 undefined 或 null
@@ -211,34 +203,32 @@ printName("Alice"); // ALICE
 // printName(); // 錯誤：執行期間會發生錯誤，因為 name 為 undefined
 ```
 
-#### **斷言 DOM 元素**
+**斷言 DOM 元素**
 ```typescript
 const inputElement = document.getElementById("username") as HTMLInputElement;
 inputElement.value = "TypeScript";
 ```
 
-#### **避免過度使用 `any` 搭配斷言**
+**避免過度使用 `any` 搭配斷言**
 ```typescript
 let data: any = "Hello, World!";
 // 不建議這樣使用，因為會破壞型別安全
 let length: number = (data as number); // 錯誤的斷言
 ```
 
----
 
-## **總結**
+## 總結
 
-### **Intersection Types（交集型別）**
+**Intersection Types（交集型別）**
 - 用於合併多個型別，適合需要同時滿足多重屬性的情況。
 - 應避免過於複雜的交集結構，保持型別簡單清晰。
 
-### **Type Guards（型別守衛）**
+**Type Guards（型別守衛）**
 - 提供型別縮小的能力，讓程式碼更具型別安全性。
 - 使用內建守衛（`typeof`、`instanceof`、`in`）或自定義守衛來檢查型別。
 - 避免過度複雜的守衛邏輯，保持程式碼乾淨。
 
-### **Type Assertions（型別斷言）**
+**Type Assertions（型別斷言）**
 - 僅在必要時使用型別斷言，避免破壞型別安全。
 - 優先使用型別守衛來縮小型別範圍。
 - 非空斷言（`!`）應謹慎使用，避免不必要的執行期間錯誤。
-

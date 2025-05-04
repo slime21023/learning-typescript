@@ -7,6 +7,8 @@ const site = lume({
     location: new URL("https://slime21023.github.io/learning-typescript/"),
 });
 
+site.ignore("README.md", "CHANGELOG.md", "node_modules");
+
 site.use(wiki());
 site.use(codeHighlight({
     theme: {

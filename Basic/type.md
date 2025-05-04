@@ -5,7 +5,7 @@ order: 1
 ---
 # Type
 
-### 基本類型
+## 基本類型
 **`number`**：數字（整數或浮點數）
   ```typescript
   let age: number = 25;
@@ -24,7 +24,7 @@ order: 1
 
 ---
 
-### 物件類型
+## 物件類型
 物件是 JavaScript 的核心，TypeScript 讓你定義物件的結構：
 ```typescript
 let person: { name: string; age: number } = {
@@ -36,7 +36,7 @@ let person: { name: string; age: number } = {
 
 ---
 
-### 陣列類型
+## 陣列類型
 陣列用來儲存多個相同類型的元素：
 ```typescript
 let numbers: number[] = [1, 2, 3];
@@ -46,7 +46,7 @@ let names: string[] = ["Alice", "Bob"];
 
 ---
 
-### 函數類型
+## 函數類型
 函數的參數和返回值需要指定類型：
 ```typescript
 function add(a: number, b: number): number {
@@ -64,7 +64,7 @@ function add(a: number, b: number): number {
 
 ---
 
-### 聯合類型（Union Types）
+## 聯合類型（Union Types）
 聯合類型讓變數可以是多種類型之一：
 ```typescript
 let id: string | number = "123";
@@ -83,7 +83,7 @@ function printId(id: string | number) {
 
 ---
 
-### 字面量類型（Literal Types）
+## 字面量類型（Literal Types）
 字面量類型限制變數只能是特定值：
 ```typescript
 let direction: "up" | "down" = "up";
@@ -92,7 +92,7 @@ let direction: "up" | "down" = "up";
 
 ---
 
-### 類型別名（Type Aliases）
+## 類型別名（Type Aliases）
 類型別名為複雜類型取一個簡單的名字：
 ```typescript
 type User = { name: string; age: number };
@@ -102,7 +102,7 @@ let user: User = { name: "Alice", age: 25 };
 
 ---
 
-### 處理 `null` 和 `undefined`
+## 處理 `null` 和 `undefined`
 當變數可能為空時，使用聯合類型並檢查：
 ```typescript
 let username: string | null = null;
@@ -114,7 +114,7 @@ if (username !== null) {
 
 ---
 
-### Enum（列舉）
+## Enum（列舉）
 Enum 定義一組命名常量：
 ```typescript
 enum Color {
@@ -129,7 +129,7 @@ let myColor: Color = Color.Green;
 
 ---
 
-### Tuple（元組）
+## Tuple（元組）
 Tuple 是固定長度和類型的陣列：
 ```typescript
 let person: [string, number] = ["Alice", 25];
@@ -138,7 +138,7 @@ let person: [string, number] = ["Alice", 25];
 
 ---
 
-### 特殊類型
+## 特殊類型
 **`void`**：函數無返回值
   ```typescript
   function logMessage(): void {
@@ -161,7 +161,7 @@ let person: [string, number] = ["Alice", 25];
 
 ---
 
-### 設計原則
+## 設計原則
 - **避免使用 `any`**：`any` 關閉類型檢查，應盡量用具體類型。
 - **從簡單開始**：先掌握基本類型，再學習進階類型。
 - **利用類型推斷**：簡單情況下，TypeScript 會自動推斷類型：
@@ -171,39 +171,17 @@ let person: [string, number] = ["Alice", 25];
 
 ---
 
-### 初學者常見問題
-- **Q1: Enum 和字面量類型有什麼不同？**
-  - **A**：字面量類型適合簡單的固定字串；Enum 適合需要命名的常量集合。
-- **Q2: Tuple 和 Array 差在哪裡？**
-  - **A**：Tuple 長度和類型固定；Array 長度可變，類型統一。
-- **Q3: 如何處理可能為 null 的變數？**
-  - **A**：用聯合類型並在操作前檢查是否為 null。
+## 初學者常見問題
+- **Enum 和字面量類型有什麼不同？**
+  - 字面量類型適合簡單的固定字串；Enum 適合需要命名的常量集合。
+- **Tuple 和 Array 差在哪裡？**
+  - Tuple 長度和類型固定；Array 長度可變，類型統一。
+- **如何處理可能為 null 的變數？**
+  - 用聯合類型並在操作前檢查是否為 null。
 
 ---
 
-### 實用範例
-以下是結合多種類型的簡單範例：
-```typescript
-type Status = "success" | "error";
-enum LogLevel {
-  Info,
-  Error
-}
-
-function log(status: Status, message: string): void {
-  if (status === "success") {
-    console.log(`[INFO] ${message}`);
-  } else {
-    console.error(`[ERROR] ${message}`);
-  }
-}
-
-log("success", "Operation completed");
-```
-
----
-
-### **總結**
+## **總結**
 - **基本類型**：`number`、`string`、`boolean`、`object`、`array`。
 - **進階類型**： Union、String Literal、Enum、Tuple。
 - **特殊類型**：`void`、`never`、`unknown`。

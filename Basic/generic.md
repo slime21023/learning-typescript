@@ -7,7 +7,6 @@ order: 6
 
 ## TypeScript Generics（泛型）
 
-### **最佳實踐**
 1. **使用泛型提升程式的靈活性與型別安全**：
    - 泛型允許我們在定義函式、介面或類別時，使用型別參數來替代具體的型別，提升程式的可重用性。
 
@@ -20,9 +19,8 @@ order: 6
 4. **結合型別推斷**：
    - TypeScript 通常可以根據上下文推斷泛型型別，因此在某些情況下可以省略明確指定泛型型別。
 
-### **範例**
 
-#### **基本泛型函式**
+**基本泛型函式**
 ```typescript
 function identity<T>(value: T): T {
   return value;
@@ -32,7 +30,7 @@ console.log(identity<string>("Hello")); // Hello
 console.log(identity<number>(42));      // 42
 ```
 
-#### **泛型與陣列**
+**泛型與陣列**
 ```typescript
 function getFirstElement<T>(arr: T[]): T {
   return arr[0];
@@ -42,11 +40,8 @@ console.log(getFirstElement([1, 2, 3]));     // 1
 console.log(getFirstElement(["a", "b", "c"])); // "a"
 ```
 
----
-
 ## Generic Constraints（泛型約束）
 
-### **最佳實踐**
 1. **限制泛型型別的範圍**：
    - 使用 `extends` 關鍵字對泛型進行約束，確保泛型型別具有某些屬性或行為。
 
@@ -56,9 +51,7 @@ console.log(getFirstElement(["a", "b", "c"])); // "a"
 3. **結合內建型別（例如 `keyof`）進行約束**：
    - 利用 `keyof` 和其他工具，進一步限制泛型型別的操作範圍。
 
-### **範例**
-
-#### **基本泛型約束**
+**基本泛型約束**
 ```typescript
 interface HasLength {
   length: number;
@@ -74,7 +67,7 @@ logLength({ length: 10 });    // 10
 // logLength(42);             // 錯誤：數字型別沒有 length 屬性
 ```
 
-#### **使用 `keyof` 約束**
+**使用 `keyof` 約束**
 ```typescript
 function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
   return obj[key];
@@ -86,11 +79,8 @@ console.log(getProperty(person, "age"));  // 30
 // getProperty(person, "gender");         // 錯誤：gender 不在 person 的屬性中
 ```
 
----
-
 ## Generic Interfaces（泛型介面）
 
-### **最佳實踐**
 1. **使用泛型介面定義靈活的結構**：
    - 泛型介面適合用於描述具有靈活型別的物件，提升程式的重用性。
 
@@ -100,9 +90,8 @@ console.log(getProperty(person, "age"));  // 30
 3. **明確指定泛型的用途**：
    - 泛型應該有清楚的用途，避免多層嵌套的泛型結構，保持程式碼清晰。
 
-### **範例**
 
-#### **基本泛型介面**
+**基本泛型介面**
 ```typescript
 interface Box<T> {
   value: T;
@@ -115,7 +104,7 @@ console.log(stringBox.value); // Hello
 console.log(numberBox.value); // 42
 ```
 
-#### **泛型函式型別**
+**泛型函式型別**
 ```typescript
 interface GenericFunction<T> {
   (arg: T): T;
@@ -125,7 +114,7 @@ const identity: GenericFunction<number> = (arg) => arg;
 console.log(identity(42)); // 42
 ```
 
-#### **多泛型參數的介面**
+**多泛型參數的介面**
 ```typescript
 interface Pair<K, V> {
   key: K;
@@ -136,11 +125,9 @@ const pair: Pair<string, number> = { key: "age", value: 30 };
 console.log(pair); // { key: 'age', value: 30 }
 ```
 
----
 
 ## Generic Classes（泛型類別）
 
-### **最佳實踐**
 1. **使用泛型類別實現靈活的資料結構**：
    - 泛型類別適合用於實現通用的資料結構，例如堆疊（Stack）、佇列（Queue）等。
 
@@ -150,9 +137,7 @@ console.log(pair); // { key: 'age', value: 30 }
 3. **避免過度複雜的泛型結構**：
    - 如果類別的泛型參數過多，應考慮簡化設計。
 
-### **範例**
-
-#### **基本泛型類別**
+**基本泛型類別**
 ```typescript
 class GenericBox<T> {
   private _value: T;
@@ -176,7 +161,7 @@ stringBox.value = "World";
 console.log(stringBox.value); // World
 ```
 
-#### **實現資料結構：堆疊**
+**實現資料結構：堆疊**
 ```typescript
 class Stack<T> {
   private items: T[] = [];
@@ -206,7 +191,7 @@ stack.pop();
 console.log(stack.peek()); // 1
 ```
 
-#### **泛型類別與約束**
+**泛型類別與約束**
 ```typescript
 interface Identifiable {
   id: number;
@@ -231,22 +216,20 @@ repo.add({ id: 2, name: "Bob" });
 console.log(repo.findById(1)); // { id: 1, name: 'Alice' }
 ```
 
----
-
 ## **總結**
 
-### **TypeScript Generics**
+**TypeScript Generics**
 - 泛型提供靈活的型別解決方案，適用於需要重用性和型別安全的情況。
 - 避免過度使用泛型，保持程式碼清晰。
 
-### **Generic Constraints**
+**Generic Constraints**
 - 使用 `extends` 限制泛型型別的範圍，確保型別安全。
 - 結合 `keyof` 等工具進一步限制操作範圍。
 
-### **Generic Interfaces**
+**Generic Interfaces**
 - 泛型介面適合描述靈活的物件結構或函式型別。
 - 避免過於複雜的多層泛型結構。
 
-### **Generic Classes**
+**Generic Classes**
 - 泛型類別適合用於實現通用的資料結構或邏輯。
 - 搭配泛型約束，提升類別的型別安全性。
